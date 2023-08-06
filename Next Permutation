@@ -1,0 +1,26 @@
+We can also use only next_permutation(arr.begin(), arr.end()) -> STL
+
+class Solution{
+public:
+    vector<int> nextPermutation(int N, vector<int> arr){
+        // code here
+        int i=N-1;
+        while(i>0 && arr[i-1]>=arr[i])
+        {
+            i--;
+        }
+        if(i==0)
+        {
+            reverse(arr.begin(), arr.end());
+            return arr;
+        }
+        int j=N-1;
+        while(arr[j]<=arr[i-1])
+        {
+            j--;
+        }
+        swap(arr[i-1], arr[j]);
+        reverse(arr.begin()+i, arr.end());
+        return arr;
+    }
+};
