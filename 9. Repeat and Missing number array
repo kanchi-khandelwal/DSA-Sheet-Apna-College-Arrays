@@ -1,0 +1,22 @@
+vector<int> Solution::repeatedNumber(const vector<int> &A) {
+    int n=A.size();
+    int B[n+1]={0};
+    int repeatNo=0;
+    int missingNo=0;
+    for(int i=0; i<n; i++)
+    {
+        B[A[i]]++;
+    }
+    for(int i=1; i<=n; i++)
+    {
+        if(B[i]==0)
+        {
+            missingNo=i;
+        }
+        if(B[i]==2)
+        {
+            repeatNo=i;
+        }
+    }
+    return {repeatNo, missingNo};
+}
