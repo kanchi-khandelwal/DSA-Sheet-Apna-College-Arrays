@@ -7,36 +7,27 @@ public:
         for(int i=0;i<n-1;i++){
             int j=i+1,k=n-1;
             // check duplicate 1 here
-            if(i>0 && nums[i]==nums[i-1])
-            {
-                continue;
-            }
+            if(i>0 and nums[i]==nums[i-1])
+            continue;
+            
             while(j<k){ 
-                int sum=nums[i]+nums[j]+nums[k];
-                if(sum==0)
+                if(nums[i]+nums[j]+nums[k]==0)
                 {
                     ans.push_back({nums[i],nums[j],nums[k]});
-                    j++;
-                    k--;
                     // check duplicate 2 here
-                    while(j<k && nums[j]==nums[j+1])
-                    {
-                        j++;
-                    }
-                    // check duplicate 3 here
-                    while(j<k && nums[k]==nums[k-1])
-                    {
-                        k--;
-                    }
-                }
-                else if(sum<0)
-                {
+                    while(j<k and nums[j]==nums[j+1])
                     j++;
-                }
-                else if(sum>0)
-                {
+                    // check duplicate 3 here
+                    while(j<k and nums[k]==nums[k-1])
                     k--;
+                    
+                    j++,k--;
                 }
+                else if((nums[i]+nums[j]+nums[k])<0)
+                j++;
+                
+                else 
+                k--;
             }
         }
         return ans;
