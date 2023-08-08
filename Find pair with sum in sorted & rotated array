@@ -1,0 +1,27 @@
+
+bool pairInSortedRotated(int arr[], int n, int x)
+{
+    int i;
+    for (i = 0; i < n - 1; i++)
+        if (arr[i] > arr[i + 1])   // you can also find pivot here by binary search too and after doing that there will be slight changes in the code
+            break;
+ 
+    // l is now index of smallest element
+    int l = (i + 1) % n;
+ 
+    // r is now index of largest element
+    int r = i;
+ 
+    // Keep moving either l or r till they meet
+    while (l != r) {
+        if (arr[l] + arr[r] == x)
+            return true;
+ 
+        if (arr[l] + arr[r] < x)
+            l = (l + 1) % n;    // for making a circular movement
+ 
+        else
+            r = (n + r - 1) % n;   // for making a circular movement
+    }
+    return false;
+}
